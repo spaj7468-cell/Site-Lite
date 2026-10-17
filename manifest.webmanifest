@@ -1,0 +1,18 @@
+{
+  "name": "Site-Lite — visual website layer by OuRi",
+  "short_name": "Site-Lite",
+  "description": "Lightweight visual website layer: components, animation timeline and a clean HTML/CSS/JS exporter. Zero dependencies.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#08080a",
+  "theme_color": "#08080a",
+  "lang": "en",
+  "categories": ["developer tools", "productivity"],
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/favicon.png", "sizes": "64x64", "type": "image/png", "purpose": "any" }
+  ]
+}

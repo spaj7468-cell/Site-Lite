@@ -1,0 +1,100 @@
+/* Site-Lite — собственный слой поверх QKC Core */
+
+/* ---------- hero ---------- */
+.hero{ padding:calc(var(--nav-h) + clamp(48px,9vw,120px)) 0 clamp(36px,6vw,72px); position:relative; z-index:3 }
+.hero .lead{ margin-top:18px }
+.hero__cta{ display:flex; gap:12px; margin-top:30px; flex-wrap:wrap }
+.counts{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px; margin:clamp(38px,6vw,64px) 0 0;
+  background:var(--line); border:1px solid var(--line); border-radius:var(--r); overflow:hidden;
+}
+.count{ background:var(--surface); padding:18px 20px }
+.count dt{ font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0 0 6px }
+.count dd{ margin:0; font-family:var(--font-d); font-size:clamp(1.4rem,3vw,2rem); font-weight:700; letter-spacing:-.03em }
+.count dd.num{ font-family:var(--font-mono) }
+
+/* ---------- шапки блоков ---------- */
+.block__head{ max-width:70ch; margin-bottom:clamp(24px,4vw,40px) }
+.block__head .h2{ margin-top:10px }
+.block__head .muted{ margin-top:12px; line-height:1.65 }
+
+/* ---------- карточки ---------- */
+.card--meta{ border-style:dashed; background:transparent }
+.card--meta:hover{ transform:none; box-shadow:none }
+.card code{ font-size:.78rem; background:var(--surface2); border:1px solid var(--line); border-radius:6px; padding:2px 6px }
+
+/* ---------- анимационный playground ---------- */
+.play{
+  border:1px solid var(--line); border-radius:var(--r-lg); overflow:hidden;
+  background:linear-gradient(180deg,var(--surface),var(--bg2));
+}
+.play__stage{
+  position:relative; height:clamp(180px,32vw,260px); overflow:hidden;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:44px 44px;
+  border-bottom:1px solid var(--line);
+}
+.play__box{
+  position:absolute; top:50%; left:0; width:clamp(52px,9vw,76px); height:clamp(52px,9vw,76px);
+  margin-top:calc(clamp(52px,9vw,76px) / -2);
+  background:var(--text); border-radius:12px; will-change:transform,opacity;
+}
+.play__ui{ padding:16px clamp(14px,2.4vw,22px) 18px }
+.play__row{ display:flex; align-items:center; gap:14px }
+.play__scrub{ flex:1; accent-color:var(--text); height:2px; cursor:ew-resize; background:transparent }
+.play__time{ min-width:52px; text-align:right; color:var(--muted); font-size:.82rem }
+.play__chips{ display:flex; gap:8px; flex-wrap:wrap; list-style:none; margin:14px 0 0; padding:0 }
+
+/* ---------- код ---------- */
+.code{
+  margin:0; padding:20px 22px; border:1px solid var(--line); border-radius:var(--r);
+  background:var(--bg2); color:var(--text2); font-size:.85rem; line-height:1.75;
+  overflow:auto; tab-size:2;
+}
+.split{ display:grid; grid-template-columns:1.1fr 1fr; gap:var(--gap); align-items:start }
+.ticks{ margin:0; padding:0; list-style:none; display:grid; gap:14px }
+.ticks li{ position:relative; padding-left:30px; color:var(--text2); font-size:.94rem; line-height:1.6 }
+.ticks li::before{
+  content:""; position:absolute; left:1px; top:.34em; width:16px; height:16px;
+  border:1px solid var(--line2); border-radius:5px;
+}
+.ticks li::after{
+  content:""; position:absolute; left:5px; top:.42em; width:8px; height:4.5px;
+  border-left:1.7px solid var(--text); border-bottom:1.7px solid var(--text);
+  transform:rotate(-45deg);
+}
+
+/* ---------- roadmap ---------- */
+.road{ margin:0; padding:0; list-style:none; counter-reset:step; display:grid; gap:10px; max-width:760px }
+.road li{
+  position:relative; padding:16px 18px 16px 62px; border:1px solid var(--line); border-radius:var(--r);
+  background:var(--surface); display:grid; gap:2px;
+}
+.road li::before{
+  counter-increment:step; content:counter(step,decimal-leading-zero);
+  position:absolute; left:18px; top:16px; font-family:var(--font-mono); font-size:.8rem; color:var(--muted2);
+}
+.road b{ font-family:var(--font-d); font-weight:600; letter-spacing:-.01em }
+.road span{ color:var(--muted); font-size:.86rem }
+.road .is-done{ border-color:var(--line2) }
+.road .is-done::after{
+  content:"done"; position:absolute; right:16px; top:16px; font-size:.62rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--bg); background:var(--text); padding:3px 8px; border-radius:999px;
+}
+.road .is-next::after{
+  content:"next"; position:absolute; right:16px; top:16px; font-size:.62rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--muted); border:1px solid var(--line2); padding:2px 8px; border-radius:999px;
+}
+
+/* ---------- адаптив ---------- */
+@media (max-width:820px){
+  .counts{ grid-template-columns:1fr 1fr }
+  .split{ grid-template-columns:1fr }
+  .nav__links{ display:none }
+  .nav__links.is-open{
+    display:flex; flex-direction:column; position:absolute; top:var(--nav-h); left:0; right:0;
+    background:var(--bg); border-bottom:1px solid var(--line); padding:10px var(--gap) 16px;
+  }
+  .nav__burger{ display:inline-flex }
+}
+@media (min-width:821px){ .nav__burger{ display:none } }

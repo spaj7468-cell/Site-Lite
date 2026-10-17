@@ -1,21 +1,237 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Site-Lite — Visual Website Builder</title>
-<style>
-*{box-sizing:border-box;font-family:Inter,Arial,sans-serif}body{margin:0;background:#05070d;color:#fff}header{padding:80px 10%;text-align:center;background:linear-gradient(135deg,#111827,#020617)}h1{font-size:64px;margin:0 0 20px}p{color:#b8c1d9;font-size:20px}.btn{display:inline-block;padding:15px 30px;border-radius:14px;background:#fff;color:#05070d;text-decoration:none;margin-top:25px;font-weight:700}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:60px 10%}.card{background:#111827;border:1px solid #263249;border-radius:24px;padding:30px;transition:.3s}.card:hover{transform:translateY(-8px);border-color:#fff}footer{text-align:center;padding:40px;color:#8792aa}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Site-Lite — visual website layer by OuRi · build visually, export clean</title>
+<meta name="description" content="Site-Lite is OuRi's lightweight visual website layer: a compact project format, a component system, a keyframe animation timeline and a clean HTML/CSS/JS exporter. Zero dependencies, works offline.">
+<meta name="theme-color" content="#08080a">
+<meta name="color-scheme" content="dark light">
+<link rel="canonical" href="https://spaj7468-cell.github.io/Site-Lite/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OuRi Corp">
+<meta property="og:title" content="Site-Lite — visual website layer">
+<meta property="og:description" content="Component system, animation timeline and a clean HTML/CSS/JS exporter. Zero dependencies, offline-first.">
+<meta property="og:url" content="https://spaj7468-cell.github.io/Site-Lite/">
+<meta property="og:image" content="https://spaj7468-cell.github.io/Site-Lite/assets/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Site-Lite — visual website layer">
+<meta name="twitter:description" content="Build websites visually. Export clean HTML, CSS and JavaScript.">
+<meta name="twitter:image" content="https://spaj7468-cell.github.io/Site-Lite/assets/icon-512.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap"></noscript>
+<link rel="stylesheet" href="css/qkc-core.css">
+<link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-<header><h1>Site-Lite</h1><p>A lightweight visual website engine by OuRi. Build, animate and export modern websites without complexity.</p><a class="btn" href="#features">Explore</a></header>
-<section id="features" class="grid">
-<div class="card"><h2>Visual Editor</h2><p>Create pages using components and live preview.</p></div>
-<div class="card"><h2>Animation System</h2><p>Add smooth effects with a timeline workflow.</p></div>
-<div class="card"><h2>Export Engine</h2><p>Generate clean HTML, CSS and JavaScript.</p></div>
-<div class="card"><h2>Asset Manager</h2><p>Organize images, icons and fonts in projects.</p></div>
-</section>
-<footer>Site-Lite © OuRi — Building the future of visual web creation</footer>
+
+<div class="grid-overlay" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="scroll-progress" aria-hidden="true"><i id="scrollBar"></i></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="nav__in">
+    <a class="brand" href="#top" aria-label="Site-Lite, home">
+      <img src="assets/favicon.png" alt="" width="28" height="28" decoding="async">
+      <span class="brand__name">Site-Lite</span>
+      <span class="beta" title="Work in progress">ALPHA</span>
+    </a>
+    <nav class="nav__links" id="navLinks" aria-label="Main">
+      <a class="nav__link" href="#components">Components</a>
+      <a class="nav__link" href="#animation">Animation</a>
+      <a class="nav__link" href="#export">Export</a>
+      <a class="nav__link" href="#format">Format</a>
+      <a class="nav__link" href="#roadmap">Roadmap</a>
+    </nav>
+    <div class="nav__right">
+      <button class="icon-btn" id="btnTheme" title="Toggle theme" aria-label="Toggle colour theme" aria-pressed="false">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" stroke="none"/></svg>
+      </button>
+      <a class="btn btn--sm btn--ghost" href="https://github.com/spaj7468-cell/Site-Lite" rel="noopener">
+        <svg viewBox="0 0 16 16" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        Source
+      </a>
+      <button class="icon-btn nav__burger" id="btnBurger" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+  <!-- ════════ hero ════════ -->
+  <section class="hero" id="top">
+    <span class="kicker reveal">OuRi Corp · visual web layer</span>
+    <h1 class="h1 reveal">Build visually.<br>Export clean.</h1>
+    <p class="lead reveal">Site-Lite is a lightweight project format and runtime for creating websites
+      without hand-written markup: components, parameters and a keyframe timeline — exported to plain
+      HTML, CSS and JavaScript that runs anywhere, with no Site-Lite services attached.</p>
+    <div class="hero__cta reveal">
+      <a class="btn btn--primary btn--lg" href="#components">Explore the system</a>
+      <a class="btn btn--ghost btn--lg" href="docs/ARCHITECTURE.md">Architecture doc</a>
+    </div>
+    <dl class="counts reveal" aria-label="Key numbers">
+      <div class="count"><dt>Components</dt><dd class="num">5</dd></div>
+      <div class="count"><dt>Animation channels</dt><dd class="num">7</dd></div>
+      <div class="count"><dt>Dependencies</dt><dd class="num">0</dd></div>
+      <div class="count"><dt>Export relies on</dt><dd class="num">nothing</dd></div>
+    </dl>
+  </section>
+
+  <!-- ════════ components ════════ -->
+  <section class="section" id="components">
+    <div class="block__head reveal">
+      <span class="kicker">01 · building blocks</span>
+      <h2 class="h2">Five components cover most pages</h2>
+      <p class="muted">Each component is a reusable website object with parameters, not a pixel picture.
+        Change a parameter — the page changes. No markup edits.</p>
+    </div>
+    <div class="grid grid--3">
+      <article class="card reveal">
+        <div class="card__ico"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 5h18v9H3z"/><path d="M7 18h10"/></svg></div>
+        <h3>Hero</h3>
+        <p>Full-bleed opening block: headline, lead, call to action and a background layer.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card__ico"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="8" width="18" height="8" rx="4"/><path d="M8 12h.01M12 12h.01"/></svg></div>
+        <h3>Button</h3>
+        <p>Variants, sizes and states as parameters. Keyboard- and screen-reader-friendly by default.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card__ico"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 10h16"/></svg></div>
+        <h3>Card</h3>
+        <p>Bordered surface with title, body and optional icon slot. The workhorse of any layout.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card__ico"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="8" height="7" rx="1.5"/><rect x="13" y="4" width="8" height="7" rx="1.5"/><rect x="3" y="13" width="8" height="7" rx="1.5"/><rect x="13" y="13" width="8" height="7" rx="1.5"/></svg></div>
+        <h3>Gallery</h3>
+        <p>Responsive image grid with lazy loading and a caption line per item.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card__ico"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 6h18M3 6v0M6 6v3M10 6v3M14 6v3"/></svg></div>
+        <h3>Navigation</h3>
+        <p>Sticky bar with brand slot, links and a burger fallback on narrow screens.</p>
+      </article>
+      <article class="card card--meta reveal">
+        <h3>Parameters, not pictures</h3>
+        <p>A component instance is data: <code>{"type":"Button","label":"Go","size":"lg"}</code>.
+          The runtime renders it; the exporter prints it as static markup.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ════════ animation ════════ -->
+  <section class="section" id="animation">
+    <div class="block__head reveal">
+      <span class="kicker">02 · motion</span>
+      <h2 class="h2">A timeline you can actually feel</h2>
+      <p class="muted">Seven channels: timeline, keyframes, position, scale, rotation, opacity and easing.
+        Drag the scrubber — the square below is driven by the same maths the exporter writes out.</p>
+    </div>
+    <div class="play reveal" id="play">
+      <div class="play__stage" aria-hidden="true">
+        <div class="play__box" id="playBox"></div>
+      </div>
+      <div class="play__ui">
+        <div class="play__row">
+          <button class="icon-btn" id="playBtn" aria-label="Play or pause the demo" aria-pressed="false">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path id="playIco" d="M8 5v14l11-7z"/></svg>
+          </button>
+          <input class="play__scrub" id="playScrub" type="range" min="0" max="1000" value="0" step="1" aria-label="Timeline position">
+          <span class="num play__time" id="playTime">0.00s</span>
+        </div>
+        <ul class="play__chips" aria-label="Animation channels">
+          <li class="chip">timeline</li><li class="chip">keyframes</li><li class="chip">position</li>
+          <li class="chip">scale</li><li class="chip">rotation</li><li class="chip">opacity</li><li class="chip">easing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ export ════════ -->
+  <section class="section" id="export">
+    <div class="block__head reveal">
+      <span class="kicker">03 · export</span>
+      <h2 class="h2">The export owns nothing</h2>
+      <p class="muted">An exported site is four plain things. Open it from a USB stick in 2035 — it still works.</p>
+    </div>
+    <div class="split reveal">
+      <pre class="code" aria-label="Exported project structure"><code>exported-site/
+├── index.html
+├── style.css
+├── script.js
+└── assets/</code></pre>
+      <ul class="ticks">
+        <li>No runtime licence check, no beacon, no CDN requirement.</li>
+        <li>CSS is printed from the same tokens the editor previews.</li>
+        <li>JavaScript is emitted only if the project actually animates.</li>
+        <li>Assets are copied, hashed and referenced relatively.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ════════ format ════════ -->
+  <section class="section" id="format">
+    <div class="block__head reveal">
+      <span class="kicker">04 · project format</span>
+      <h2 class="h2">A project is one readable file</h2>
+      <p class="muted">Pages, components, parameters, assets, animations and settings — plain data, diffable in git.</p>
+    </div>
+    <pre class="code reveal" aria-label="Example project file"><code>{
+  "pages":     [ "home", "about" ],
+  "components":[ { "type": "Hero", "title": "Hello", "cta": "Start" } ],
+  "parameters":{ "radius": 14, "gap": 24 },
+  "assets":    [ "logo.png" ],
+  "animations":[ { "target": "hero", "channel": "opacity", "from": 0, "to": 1, "ease": "out" } ],
+  "settings":  { "theme": "dark", "lang": "en" }
+}</code></pre>
+  </section>
+
+  <!-- ════════ roadmap ════════ -->
+  <section class="section" id="roadmap">
+    <div class="block__head reveal">
+      <span class="kicker">05 · roadmap</span>
+      <h2 class="h2">Where it goes next</h2>
+    </div>
+    <ol class="road reveal">
+      <li class="is-done"><b>Live preview</b><span>edit and see the page in the same breath</span></li>
+      <li class="is-done"><b>Component system</b><span>five primitives with parameters</span></li>
+      <li class="is-next"><b>Parameter-based design</b><span>tokens drive every component</span></li>
+      <li class="is-next"><b>Animation timeline</b><span>seven channels, scrub and play</span></li>
+      <li class="is-next"><b>Asset manager</b><span>import, hash, reference</span></li>
+      <li class="is-next"><b>ZIP import / export</b><span>projects travel as one archive</span></li>
+      <li class="is-next"><b>HTML import (beta)</b><span>adopt an existing page into the format</span></li>
+    </ol>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__in">
+    <span>Site-Lite · a product of <a href="https://spaj7468-cell.github.io/ouri-corp/">OuRi Corp</a> — one human, one AI, everything open source.</span>
+    <span class="foot__sisters">
+      <a href="https://spaj7468-cell.github.io/qkc/">QKC</a>
+      <a href="https://spaj7468-cell.github.io/qkc-engine/">QKC Engine</a>
+      <a href="https://spaj7468-cell.github.io/qkccode/">QKCcode</a>
+    </span>
+    <span>© <span data-year>2026</span> OuRi · MIT</span>
+  </div>
+</footer>
+
+<script src="js/qkc-core.js" defer></script>
+<script src="js/site.js" defer></script>
 </body>
 </html>
