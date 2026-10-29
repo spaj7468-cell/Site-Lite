@@ -29,3 +29,10 @@ Site-Lite
 - ZIP project import/export
 - HTML/CSS/JS export
 - Future beta HTML import
+
+## Авторы
+
+| Роль | Автор | Профиль |
+|------|-------|---------|
+| Автор | **telrino** | <https://vk.ru/telrino> |
+| Соавтор | **Бро** | <https://vk.ru/id920684081> |
